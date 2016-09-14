@@ -109,7 +109,7 @@ BTCChina.prototype._tradeRequest = function(method, params, callback) {
     params: params.join('~'), // we need commas here in the querystring
                               // hacky workaround to perserve them
   };
-  var qs = querystring.stringify(args).replace('~', ',');
+  var qs = querystring.stringify(args).replace(/~/g, ',');
 
   var signer = crypto.createHmac('sha1', this.secret);
   var hmac = signer.update(qs).digest('hex');
